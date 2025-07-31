@@ -1,7 +1,9 @@
 # ignore all extra files
 # *.txt
 *.bkp
+*.log
 
 # ignore extra directories
+DSA/
 obj/
 bin/

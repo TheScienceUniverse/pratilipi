@@ -1,0 +1,9 @@
+rm -f copy
+
+gcc -Wall -L$(pwd)/DSA/lib -ldsa -o ./obj/directory.o -c ./src/directory.c
+
+gcc -Wall -L$(pwd)/DSA/lib -ldsa -o ./bin/copy ./obj/directory.o main.c
+
+tabs 4
+
+LD_LIBRARY_PATH=./DSA/lib/:$LD_LIBRARY_PATH ./bin/copy
