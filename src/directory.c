@@ -50,12 +50,8 @@ String* get_relative_path (Tree* tree, Node* node) {
 	String* path = duplicate_string (node -> name);
 	char last_char = get_char_at (path, path -> length - 1);
 
-	if ('/' != last_char) {
-		String* delimeter = create_string (2, "/\0");
-		String* temp_path = concatenate_strings (2, path, delimeter);
-		delete_string (&path);
-		path = temp_path;
-		delete_string (&delimeter);
+	if ('\0' != last_char) {
+		append_chars_to_string (path, 1, '\0');
 	}
 
 	if (tree -> root_node == node) {
@@ -184,13 +180,21 @@ void find_inner_files (Tree* tree, Node* anchor) {
 //		display_node (node);
 		append_child_node (tree, anchor, node);
 
+		// handle directory
 		if (DT_DIR == dir_ent -> d_type) {
 			Node* child_node = get_last_child_node_address (anchor);
-			String* path = get_relative_path (tree, child_node);
-			//display_string_details (path);
-			delete_string (&path);
 			find_inner_files (tree, child_node);
-			// delete_node (&child_node);
+		}
+
+		// handle file
+		if (DT_REG == dir_ent -> d_type) {
+			Node* child_node = get_last_child_node_address (anchor);
+			String* temp_path = create_string (5, "tmp/\0");
+			String* file_path = get_relative_path (tree, child_node);
+			// display_string_details (file_path);
+			split_file (file_path, temp_path);
+			delete_string (&file_path);
+			delete_string (&temp_path);
 		}
 
 		//printf (", name: %s", dir_ent -> d_name);

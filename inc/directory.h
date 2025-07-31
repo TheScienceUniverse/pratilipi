@@ -9,6 +9,8 @@
 #include "../DSA/inc/node.h"
 #include "../DSA/inc/tree.h"
 
+#include "./file.h"
+
 void display_type (unsigned char type);
 String* get_relative_path (Tree* tree, Node* node);
 void find_inner_files (Tree* tree, Node* anchor);

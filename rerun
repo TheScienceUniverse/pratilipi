@@ -1,8 +1,9 @@
 rm -f copy
 
+gcc -Wall -L$(pwd)/DSA/lib -ldsa -o ./obj/file.o -c ./src/file.c
 gcc -Wall -L$(pwd)/DSA/lib -ldsa -o ./obj/directory.o -c ./src/directory.c
 
-gcc -Wall -L$(pwd)/DSA/lib -ldsa -o ./bin/copy ./obj/directory.o main.c
+gcc -Wall -L$(pwd)/DSA/lib -ldsa -o ./bin/copy ./obj/file.o ./obj/directory.o main.c
 
 tabs 4
 
