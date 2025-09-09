@@ -36,19 +36,21 @@ void split_file (String* file_path, String* temp_path) {
 
 	printf ("File: ");
 	display_string (file_path);
+	printf (" [");
+	String* file_name_checksum = encode_adler32 (file_path);
+	display_string (file_name_checksum);
+	delete_string (&file_name_checksum);
+	printf ("] ");
 	size_t file_size = get_file_size (file_path);
 	printf (" Size: %lu bytes", file_size);
 	ENDL();
 
-	size_t segment_size = 1024;
-	size_t segment_count = file_size;
-	segment_count /= segment_size;	// in kilobytes
-
-	if (segment_count > 0) {
-		++segment_count;
-	}
+	size_t segment_size = 1024;	// 1 KiB
+	size_t segment_count = file_size / segment_size + 1;
+	printf ("Number of segments: %lu\n", segment_count);
 
 	for (size_t i = 0; i < segment_count; i++) {
+/*
 		FILE* op_file = fopen (temp_path, "wb");
 
 		if (NULL == op_file) {
@@ -57,6 +59,7 @@ void split_file (String* file_path, String* temp_path) {
 		}
 
 		fclose (op_file);
+*/
 	}
 
 	// FILE* op_file = fopen (file_path -> text, "rb");

@@ -5,9 +5,9 @@
 #include <stdlib.h>
 #include <dirent.h>
 
-#include "../DSA/inc/data.h"
-#include "../DSA/inc/node.h"
-#include "../DSA/inc/tree.h"
+#include "../../DSA/inc/data.h"
+#include "../../DSA/inc/node.h"
+#include "../../DSA/inc/tree.h"
 
 #include "./file.h"
 

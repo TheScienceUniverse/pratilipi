@@ -1,10 +1,10 @@
 rm -f copy
 
-gcc -Wall -L$(pwd)/DSA/lib -ldsa -o ./obj/file.o -c ./src/file.c
-gcc -Wall -L$(pwd)/DSA/lib -ldsa -o ./obj/directory.o -c ./src/directory.c
+gcc -Wall -o ./obj/file.o -c ./src/file.c -L$(pwd)/../DSA/lib -ldsa -L$(pwd)/../codec/lib -lcodec
+gcc -Wall -o ./obj/directory.o -c ./src/directory.c -L$(pwd)/../DSA/lib -ldsa
 
-gcc -Wall -L$(pwd)/DSA/lib -ldsa -o ./bin/copy ./obj/file.o ./obj/directory.o main.c
+gcc -Wall -o ./bin/copy ./obj/file.o ./obj/directory.o main.c -L$(pwd)/../DSA/lib -L$(pwd)/../codec/lib -ldsa -lcodec
 
 tabs 4
 
-LD_LIBRARY_PATH=./DSA/lib/:$LD_LIBRARY_PATH ./bin/copy
+LD_LIBRARY_PATH=../DSA/lib/:../codec/lib:$LD_LIBRARY_PATH ./bin/copy

@@ -6,7 +6,7 @@ int main (
 ) {
 	Tree* tree = create_tree ();
 	//String* path = create_string (1, ".");
-	String* path = create_string (3, "DSA");
+	String* path = create_string (3, "src");
 	//display_string (path);
 
 	Node* node = create_node (N_Tree);
