@@ -46,7 +46,12 @@ void split_file (String* file_path, String* temp_path) {
 	ENDL();
 
 	size_t segment_size = 1024;	// 1 KiB
-	size_t segment_count = file_size / segment_size + 1;
+	size_t segment_count = file_size / segment_size;
+
+	if (file_size > segment_count * segment_size) {
+		++segment_count;
+	}
+
 	printf ("Number of segments: %lu\n", segment_count);
 
 	for (size_t i = 0; i < segment_count; i++) {

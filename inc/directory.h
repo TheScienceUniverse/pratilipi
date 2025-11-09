@@ -8,6 +8,7 @@
 #include "../../DSA/inc/data.h"
 #include "../../DSA/inc/node.h"
 #include "../../DSA/inc/tree.h"
+#include "../../DSA/inc/mgc.h"
 
 #include "./file.h"
 

@@ -95,7 +95,7 @@ void prepend_chars_to_string (String* string, int n, char c) {
 		*dst_ptr++ = c;
 	}
 
-	copy_byte_stream (string -> length, (BYTE*) ptr, (BYTE*) dst_ptr);
+	copy_raw_byte_stream (string -> length, (BYTE*) ptr, (BYTE*) dst_ptr);
 
 	string -> length += n;
 }
@@ -111,7 +111,7 @@ void append_chars_to_string (String* string, int n, char c) {
 		exit (EXIT_FAILURE);
 	}
 
-	copy_byte_stream (string -> length, (BYTE*) ptr, (BYTE*)(string -> text));
+	copy_raw_byte_stream (string -> length, (BYTE*) ptr, (BYTE*)(string -> text));
 
 	ptr = string -> text + string -> length;
 
