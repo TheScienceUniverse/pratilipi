@@ -47,7 +47,7 @@ String* get_relative_path (Tree* tree, Node* node) {
 		return NULL;
 	}
 
-	String* path = duplicate_string (node -> name);
+	String* path = duplicate_String (node -> name);
 	char last_char = get_char_at (path, path -> length - 1);
 
 	if ('\0' != last_char) {
@@ -68,9 +68,9 @@ String* get_relative_path (Tree* tree, Node* node) {
 
 		if (NULL != node) {
 			prepend_chars_to_string (path, 1, '/');
-			String* tmp_str = concatenate_strings (2, node -> name, path);
+			String* tmp_str = concatenate_Strings (2, node -> name, path);
 			//display_string_details (tmp_str);
-			delete_string (&path);
+			delete_String (&path);
 			path = tmp_str;
 		}
 	}
@@ -154,11 +154,11 @@ void find_inner_files (Tree* tree, Node* anchor) {
 		exit (EXIT_FAILURE);
 	}
 
-	delete_string (&path);
+	delete_String (&path);
 
 	struct dirent *dir_ent; // directory entries
 	char* f_name;
-	Node* node = create_node (N_Tree);
+	Node* node = create_Node (N_Tree);
 
 	while (NULL != (dir_ent = readdir (dir))) {
 		//printf ("File => ");
@@ -176,25 +176,25 @@ void find_inner_files (Tree* tree, Node* anchor) {
 			continue;
 		}
 
-		set_node_name (node, strlen (f_name), f_name);
+		set_Node_name (node, strlen (f_name), f_name);
 //		display_node (node);
-		append_child_node (tree, anchor, node);
+		append_child_Node (tree, anchor, node);
 
 		// handle directory
 		if (DT_DIR == dir_ent -> d_type) {
-			Node* child_node = get_last_child_node_address (anchor);
+			Node* child_node = get_last_child_Node_address (anchor);
 			find_inner_files (tree, child_node);
 		}
 
 		// handle file
 		if (DT_REG == dir_ent -> d_type) {
-			Node* child_node = get_last_child_node_address (anchor);
-			String* temp_path = create_string (5, "tmp/\0");
+			Node* child_node = get_last_child_Node_address (anchor);
+			String* temp_path = create_String (5, "tmp/\0");
 			String* file_path = get_relative_path (tree, child_node);
 			// display_string_details (file_path);
-			split_file (file_path, temp_path);
-			delete_string (&file_path);
-			delete_string (&temp_path);
+//			split_file (file_path, temp_path);
+			delete_String (&file_path);
+			delete_String (&temp_path);
 		}
 
 		//printf (", name: %s", dir_ent -> d_name);
@@ -204,5 +204,5 @@ void find_inner_files (Tree* tree, Node* anchor) {
 
 	closedir (dir);
 
-	delete_node (&node);
+	delete_Node (&node);
 }
